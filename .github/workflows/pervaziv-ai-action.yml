@@ -15,7 +15,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: pervaziv/pervaziv-ai-code-review@inital-commit
+      - uses: pervaziv/pervaziv-ai-code-review@initial-commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
