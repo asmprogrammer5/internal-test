@@ -1,6 +1,5 @@
 // Add a comment to test commit
 // Add a second comment to test commit
-// Add a third comment to test commit
 const fs = require('fs');
 const https = require('https');
 const express = require('express');
