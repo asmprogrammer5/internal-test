@@ -26,6 +26,8 @@ const ensureHttps = (req, res, next) => {
 app.prepare().then(() => {
   const server = express();
 
+  server.use(csrf());
+
   server.all('*', (req, res) => {
     return handle(req, res);
   });
