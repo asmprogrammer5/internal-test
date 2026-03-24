@@ -16,7 +16,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: pervaziv/pervaziv-ai-code-review@Fix_1
+      - uses: pervaziv/pervaziv-ai-code-review@Feature_PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
