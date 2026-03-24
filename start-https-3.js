@@ -34,4 +34,4 @@ app.prepare().then(() => {
     if (err) throw err;
     console.log('> HTTPS server ready on https://localhost:3443');
   });
-});
+};);
