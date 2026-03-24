@@ -5,7 +5,7 @@ on:
     branches:
       - main              # runs on every push to main
   schedule:
-    - cron: '0 0 * * *'  # runs every day at midnight UTC
+    - cron: '4 * * * *'  # runs every day at midnight UTC
 
 jobs:
   pervaziv-ai-action:
@@ -13,7 +13,8 @@ jobs:
     permissions:
       security-events: write
       actions: read
-      contents: read
+      contents: write
+      pull-requests: write
     steps:
       - uses: pervaziv/pervaziv-ai-code-review@Fix_1
         env:
