@@ -366,7 +366,7 @@ def gsc_build(args):
           f'application image `{original_image_name}`...')
 
     # initialize Jinja env with configurations extracted from the original Docker image
-    env = jinja2.Environment()
+    env = jinja2.Environment(autoescape=True)
     env.filters['shlex_quote'] = shlex.quote
     env.filters['assert_not_none'] = assert_not_none
     env.globals['get_ubi_version'] = get_ubi_version
@@ -486,7 +486,7 @@ def gsc_build_gramine(args):
     print(f'Building base-Gramine Docker image `{gramine_image_name}`...')
 
     # initialize Jinja env with user-provided configurations
-    env = jinja2.Environment()
+    env = jinja2.Environment(autoescape=True)
     env.filters['assert_not_none'] = assert_not_none
     env.globals['get_ubi_version'] = get_ubi_version
     env.globals['get_sles_version'] = get_sles_version
@@ -557,7 +557,7 @@ def gsc_sign_image(args):
 
     # generate Dockerfile.sign from Jinja-style templates/<distro>/Dockerfile.sign.template
     # using the user-provided config file with info on OS distro, Gramine version and SGX driver
-    env = jinja2.Environment()
+    env = jinja2.Environment(autoescape=True)
     env.globals.update(yaml.safe_load(args.config_file))
     extract_user_from_image_config(unsigned_image.attrs['Config'], env)
     env.globals['args'] = extract_define_args(args)
@@ -651,7 +651,7 @@ def gsc_info_image(args):
     with tempfile.TemporaryDirectory() as tmpdirname:
         # Grant owner, group and everyone else read-write-execute permissions on temporary dir, so
         # that even non-root users in Docker images can copy `entrypoint.sig` into it
-        os.chmod(tmpdirname,0o777)
+        os.chmod(tmpdirname, 0o777)
         # Copy sigstruct file from Docker container into temporary directory on the host
         docker_socket.containers.run(args.image,
             '\'cp /gramine/app_files/entrypoint.sig /tmp/host/ 2>/dev/null || :\'',
