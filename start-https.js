@@ -22,8 +22,11 @@ const ensureHttps = (req, res, next) => {
     }
   };
 
-app.prepare().then(() => {
+app.prepare().then(const csrf = require('csurf');
+() => {
   const server = express();
+
+  server.use(csrf());
 
   server.all('*', (req, res) => {
     return handle(req, res);
